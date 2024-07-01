@@ -1,0 +1,61 @@
+<!-- nested/showroom.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Showroom</title>
+  <link rel="stylesheet" href="../src/styles/showroom.css">
+  <script type="module" src="../src/showroom.js" defer></script>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo-container">
+        <img src="../public/images/logo.png" alt="Logo">
+      </div>
+      <ul class="nav-links">
+        <li><a class="active" href="../index.html">Home</a></li>
+        <li><a href="../nested/service.html">Service</a></li>
+        <li><a href="../nested/showroom.html">Showroom</a></li>
+        <li><a href="../nested/about.html">About Us</a></li>
+        <li><a href="../nested/contact.html">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </nav>
+  <div id="app">
+    <div class="section-container">
+      <div class="spotlight-container" id="spotlight-slider">
+        <!-- Spotlight will be inserted here -->
+        <div class="header-container">
+          <a href="">Living Room Renovation</a>
+
+          <h1>Spotlight Service</h1><a href="#">View All</a>
+        </div>
+        <div class="slideshow-container">
+          <a class="arrow prev">&lt;</a>
+          <a class="arrow next">&gt;</a>
+        </div>
+        <div class="rectangle-container"></div>
+      </div>
+      
+      <div id="slider-container">
+        <!-- Slider will be inserted here dynamically -->
+        <!-- Manually added project link for testing -->
+         
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('active');
+      document.body.classList.toggle('no-scroll');
+    });
+  </script>
+</body>
+</html>

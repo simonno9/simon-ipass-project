@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Contact</title>
+  <script>
+    async function addContact() {
+      const firstname = document.getElementById("firstname").value;
+      const lastname = document.getElementById("lastname").value;
+      const category = document.getElementById("category").value;
+      const phonenumber = document.getElementById("phonenumber").value;
+      const city = document.getElementById("city").value;
+
+      const response = await fetch("http://localhost:8080/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ firstname, lastname, category, phonenumber, city })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        alert(data.message);
+      } else {
+        const errorData = await response.json();
+        alert(errorData.message);
+      }
+    }
+  </script>
+</head>
+<body>
+<h1>Add Contact</h1>
+<form onsubmit="event.preventDefault(); addContact();">
+  <label for="firstname">First Name:</label>
+  <input type="text" id="firstname" name="firstname" required>
+  <br>
+  <label for="lastname">Last Name:</label>
+  <input type="text" id="lastname" name="lastname" required>
+  <br>
+  <label for="category">Category:</label>
+  <input type="text" id="category" name="category">
+  <br>
+  <label for="phonenumber">Phone Number:</label>
+  <input type="text" id="phonenumber" name="phonenumber">
+  <br>
+  <label for="city">City:</label>
+  <input type="text" id="city" name="city">
+  <br>
+  <button type="submit">Add Contact</button>
+</form>
+</body>
+</html>

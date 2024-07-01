@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d3d3d3; /* Gray background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 300px;
+            padding: 20px;
+            background-color: #ffffff; /* White background for the container */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .container h2 {
+            margin-top: 0;
+        }
+        .container label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+        .container input {
+            width: calc(100% - 22px); /* Adjust for padding */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 id="loginHeader">Login</h2>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <button id="logoutButton" style="display:none;">Logout</button>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const loginData = { username, password };
+
+            console.log('Sending login data:', JSON.stringify(loginData)); // Log the exact data being sent
+
+            fetch('http://localhost:8080/api/user/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginData),
+                credentials: 'include' // Ensure cookies are sent
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(data => { throw new Error(data.message); });
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.message === "Login successful") {
+                    document.getElementById('message').style.color = 'green';
+                    document.getElementById('message').textContent = "Login successful! Redirecting...";
+                    console.log('Login successful');
+                    localStorage.setItem('sessionActive', 'true');
+                    setTimeout(() => {
+                        window.location.href = '/nested/admin-showroom.html';
+                    }, 2000); // Delay for 2 seconds before redirecting
+                } else {
+                    document.getElementById('message').style.color = 'red';
+                    document.getElementById('message').textContent = "Incorrect credentials";
+                    console.log('Invalid credentials');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').textContent = 'An error occurred: ' + error.message;
+            });
+        });
+
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            fetch('http://localhost:8080/api/user/logout', {
+                method: 'GET',
+                credentials: 'include' // Ensure cookies are sent
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').textContent = data.message;
+                console.log('Logout successful');
+                localStorage.removeItem('sessionActive');
+                toggleLoginLogout(false);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').textContent = 'An error occurred';
+            });
+        });
+
+        function toggleLoginLogout(isLoggedIn) {
+            if (isLoggedIn) {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('logoutButton').style.display = 'block';
+                document.getElementById('loginHeader').textContent = 'Logged In';
+            } else {
+                document.getElementById('loginForm').style.display = 'block';
+                document.getElementById('logoutButton').style.display = 'none';
+                document.getElementById('loginHeader').textContent = 'Login';
+            }
+        }
+
+        function checkSession() {
+            fetch('http://localhost:8080/api/user/checkSession', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include' // Ensure cookies are sent
+            })
+            .then(response => {
+                if (response.status === 401) {
+                    throw new Error('No active session');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.message === "Session active") {
+                    console.log('Session active');
+                    toggleLoginLogout(true);
+                } else {
+                    console.log('No active session');
+                    toggleLoginLogout(false);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+                console.log('No active session');
+                toggleLoginLogout(false);
+            });
+        }
+
+        // Check session status on page load
+        checkSession();
+    </script>
+</body>
+</html>

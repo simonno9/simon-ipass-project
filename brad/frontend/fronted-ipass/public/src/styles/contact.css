@@ -1,0 +1,321 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+  }
+  .section-container {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 900px; 
+  }
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  .row {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+  .input-half {
+    flex: 1;
+    min-width: 0;
+  }
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  select, input, textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  textarea {
+    height: 100px;
+    resize: vertical;
+  }
+
+  .upload-button {
+    background-color: #ccc !important;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  .button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .contact-container {
+    display: flex;
+    justify-content: center;
+  }
+  .contact-form {
+    width: 900px;
+}
+  .contact-collect-section .transform-text {
+    align-items: left;
+    text-align: left;
+  }
+  .blue-text {
+    color: #54C1FF;
+  }
+  .contact-collect-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .images-container-contact {
+    flex: 0 0 65%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .images-container-contact img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .image-card {
+    width: 30%;
+  }
+  .image-card.second {
+    margin-top: 20%;
+  }
+  #description {
+    min-height: 400px !important;
+  }
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .img-gallery img {
+    width: 104px;
+    height: 104px;
+    object-fit: cover;
+    margin: 5px;
+    border-radius: 10px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+  }
+  
+  
+
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px 10px 0px 10px;
+    height: 100px; /* Set the height of the navbar */
+    box-sizing: border-box;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow to the bottom */
+    
+  }
+  
+  .nav-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    margin-left: 50px; /* Space between logo and links */
+    height: 100%; /* Ensure the height of ul matches the nav */
+  }
+  
+  .nav-links li {
+    position: relative;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+  }
+  
+  .nav-links li a {
+    font-size: 20px;
+    display: block;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 0 15px; /* Space between links */
+    height: 100%;
+    box-sizing: border-box;
+    line-height: 80px; /* Vertically center the text */
+    position: relative; /* Required for the pseudo-element */
+  }
+  
+  .nav-links li a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 4px;
+    background: #54C1FF; /* Set the underline color to blue */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .nav-links li a:hover::after {
+    width: 100%;
+  }
+  
+  .logo-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-container img {
+    height: 85%;
+    object-fit: contain; /* Ensures the image scales properly */
+  }
+  
+  
+
+  
+
+
+  
+  /* Add space between each section item within the section container */
+  .slider, .spotlight-container, .reviews-container, .contact-collect-section {
+    margin-bottom: 10%; 
+    margin-top: 10%;
+  }
+  
+  
+  .transform-text {
+    flex: 0 0 30%; /* Allocate 30% of the space to the text */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 5%; /* Add space between text and images */
+  }
+  
+  .transform-text h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .transform-text p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .primary-button {
+    background-color: #54C1FF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .contactbtn {
+    margin-top: 20px;
+    font-size: 28px;
+    width: 60%;
+  }
+      .city-input{
+        max-width: 49% !important;
+    }
+
+ 
+  
+
+  
+
+
+  @keyframes fade {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+  }
+  
+  /* On smaller screens, decrease text size */
+  @media only screen and (max-width: 300px) {
+    .prev, .next, .text {
+      font-size: 11px;
+    }
+  }
+  
+  
+  @media only screen and (max-width: 1000px) {
+    nav {
+      display: none;
+    }
+  }
+  
+
+
+  .contact-collect-section .transform-text {
+    align-items: left;
+    text-align: left;
+  }
+    .primary-button {
+  background-color: #54C1FF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+}
+
+
+
+  
+     

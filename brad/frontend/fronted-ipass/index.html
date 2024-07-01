@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Layout</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="/src/main.js" defer></script>
+</head>
+<body>
+<nav>
+  <div class="nav-container">
+    <div class="logo-container">
+      <img src="./public/images/logo.png" alt="Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a class="active" href="index.html">Home</a></li>
+      <li><a href="/nested/service.html">Service</a></li>
+      <li><a href="/nested/showroom.html">Showroom</a></li>
+      <li><a href="/nested/service.html">About Us</a></li>
+      <li><a href="/nested/contact.html">Contact</a></li>
+      <li><a href="/nested/about.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+</nav>
+<div id="app">
+  <div>
+    <img src="./public/images/bank.png" alt="Full Width Image" class="full-width-image">
+  </div>
+  <div class="section-container">
+
+    <div class="slider">
+      <div class="header-container">
+        <h1>Service</h1><a href="#">View All</a>
+      </div>
+      <div class="arrow prev">&lt;</div>
+      <div class="slider-container service-container" id="service-container">
+        <!-- Cards will be inserted here dynamically -->
+      </div>
+      <div class="arrow next">&gt;</div>
+    </div>
+    
+    <div class="spotlight-container" id="spotlight-slider">
+      <div class="header-container">
+        <h1>Spotlight Service</h1><a href="#">View All</a>
+      </div>
+      <div class="slideshow-container">
+        <a class="arrow prev">&lt;</a>
+        <a class="arrow next">&gt;</a>
+      </div>
+      <div class="rectangle-container"></div>
+    </div>
+
+    <div class="reviews-container">
+      <div class="header-container">
+        <h1>Why Choose Us? <br> Our Clients Say It Best!</h1><a href="#">View All</a>
+      </div>
+      <div class="arrow prev">&lt;</div>
+      <div class="reviews" id="reviews">
+        <!-- Review cards will be inserted here dynamically -->
+      </div>
+      <div class="arrow next">&gt;</div>
+    </div>
+    <div class="service-collect-section">
+      <div class="transform-text">
+        <h1>Transform your home with Anything Home Remodeling’s comprehensive remodeling and renovation services across Broward County and Palm Beach County. Whether you're in Fort Lauderdale, Pembroke Pines, Hollywood, or Palm Beach Gardens, we offer:</h1>
+        <button class="primary-button servicebtn">Service</button>
+      </div>
+      <div class="images-container-service">
+        <div class="image-card"><img src="/images/bedroom.png" alt="bedroom"></div>
+        <div class="image-card second"><img src="/images/bedroom.png" alt="bedroom"></div>
+        <div class="image-card"><img src="/images/bedroom.png" alt="bedroom"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script>
+  document.getElementById('hamburger').addEventListener('click', function() {
+    document.querySelector('.nav-links').classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
+  });
+</script>
+</body>
+</html>

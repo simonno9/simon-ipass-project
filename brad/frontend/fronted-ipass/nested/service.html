@@ -1,0 +1,62 @@
+<!-- service.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>servicepage Page</title>
+  <link rel="stylesheet" href="/src/styles/servicepage.css">
+  <script type="module" src="/src/service.js" defer></script>
+</head>
+<body>
+<nav>
+  <div class="nav-container">
+    <div class="logo-container">
+      <img src="./public/images/logo.png" alt="Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a class="active" href="index.html">Home</a></li>
+      <li><a href="/nested/servicepage.html">servicepage</a></li>
+      <li><a href="/nested/showroom.html">Showroom</a></li>
+      <li><a href="/nested/servicepage.html">About Us</a></li>
+      <li><a href="/nested/contact.html">Contact</a></li>
+      <li><a href="/nested/about.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+</nav>
+<div id="app">
+  <div class="section-container" >
+
+    <div class="servicePagetext-section">
+        <div class="content-text">
+          <h1>How to Choose Best</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+        </div>
+        <div class="content-button">
+          <button class="servicepagebtn " onclick="window.location.href='/nested/contact.html'">CONTACT</button>
+        </div>
+      </div>
+      <div class="header-container">
+        <h1>Service </h1></a>
+      </div>
+    <div id="servicepage-card-container">
+    <!-- servicepage cards will be inserted here dynamically -->
+
+    </div>
+  </div>
+</div>
+<script>
+  document.getElementById('hamburger').addEventListener('click', function() {
+    document.querySelector('.nav-links').classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
+  });
+</script>
+</body>
+</html>
+
+

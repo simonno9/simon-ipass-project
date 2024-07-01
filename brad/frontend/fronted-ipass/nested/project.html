@@ -1,0 +1,150 @@
+<!-- nested/project.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Details</title>
+  <script type="module" src="/src/project.js" defer></script>
+  <link rel="stylesheet" href="/src/styles/project.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff; /* Changed to white */
+      margin: 0;
+      padding: 0;
+    }
+
+    #project-details {
+      margin: 20px auto;
+      background-color: #ffffff;
+    }
+
+    #project-details h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    #project-details p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 70px; /* Adjust the space between the main and small images */
+    }
+
+    .main-image {
+      width: 50%;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .small-image-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px; /* Space between small images */
+    }
+
+    .small-image {
+      width: 120px; /* Adjust the size of the small images */
+      height: 100px; /* Maintain a square aspect ratio */
+      border-radius: 5px;
+    }
+
+    .review-container {
+      margin-bottom: 20px;
+    }
+    .min-height{
+        min-height: 200px;
+    }
+
+    .project-info,
+    .review-section {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      box-shadow: 0px 2px 2px ;
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .review-header h2 {
+      margin: 0;
+    }
+
+    .review-rating {
+      font-size: 1.5em;
+      color: gold;
+    }
+
+    .review-description {
+      margin-bottom: 20px;
+      font-size: 1em;
+      line-height: 1.4;
+    }
+
+    .project-info h2 {
+      margin: 0 0 10px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .main-image {
+        width: 100%;
+      }
+      .small-image {
+        width: 48%; /* Two images per row on smaller screens */
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo-container">
+        <img src="../public/images/logo.png" alt="Logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../nested/service.html">Service</a></li>
+        <li><a href="../nested/showroom.html">Showroom</a></li>
+        <li><a href="../nested/about.html">About Us</a></li>
+        <li><a href="../nested/contact.html">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </nav>
+  <div class="section-container">
+    <div id="project-details">
+      <!-- Project details will be dynamically inserted here -->
+    </div>
+    <div id="review-section" class="review-section min-height">
+      <!-- Review section will be dynamically inserted here -->
+    </div>
+    <div id="project-info" class="project-info min-height">
+      <!-- Project name and description will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('active');
+      document.body.classList.toggle('no-scroll');
+    });
+  </script>
+</body>
+</html>

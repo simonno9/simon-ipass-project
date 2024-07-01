@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            background-color: #ffffff;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+        .sidebar .user-info {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .sidebar .user-info img {
+            width: 80px;
+            height: 80px;
+            margin-right: 20px;
+            border-radius: 10px;
+        }
+        .sidebar .user-info .username {
+            font-size: 20px;
+            font-weight: 400;
+            color: black;
+        }
+        .nav-links {
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-links li {
+            width: 100%;
+        }
+        .nav-links li a {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            padding: 15px 20px;
+            transition: background-color 0.3s;
+        }
+        .nav-links li a:hover {
+            background-color: #f0f0f0;
+        }
+        .nav-links li a img {
+            width: 30px;
+            height: 30px;
+            margin-right: 15px;
+        }
+        .sidebar img.footer-image {
+            width: 100px;
+            height: 120px;
+            position: absolute;
+            bottom: 20px;
+        }
+        .container-section {
+            margin-left: 270px;
+            padding: 20px;
+            width: calc(100% - 270px);
+        }
+        .header h1 {
+            margin-top: 0;
+        }
+        .large-card {
+            background-color: #ffffff;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            min-height: 500px; /* Ensure the card is a bit longer */
+            position: relative; /* Ensure the add button stays at the bottom right */
+
+        }
+        .contact-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .contact-table th, .contact-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .contact-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        .primary-button {
+  background-color: #54C1FF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end; /* Align buttons to the right */
+            margin-bottom: 20px;
+        }
+        .button-container input {
+            margin-right: 10px; /* Space between input and filter button */
+        }
+
+        
+
+
+.add-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="user-info">
+            <img src="https://via.placeholder.com/109x91" alt="User Image">
+            <div class="username">Username</div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">
+                <img src="https://via.placeholder.com/51x50" alt="Service Icon">
+                <div>Service</div>
+            </a></li>
+            <li><a href="#">
+                <img src="https://via.placeholder.com/50x50" alt="Showroom Icon">
+                <div>Showroom</div>
+            </a></li>
+            <li><a href="#">
+                <img src="https://via.placeholder.com/61x60" alt="Option Icon">
+                <div>Option</div>
+            </a></li>
+            <li><a href="#">
+                <img src="https://via.placeholder.com/61x60" alt="About Us Icon">
+                <div>About Us</div>
+            </a></li>
+            <li><a href="#">
+                <img src="https://via.placeholder.com/61x60" alt="Contact Icon">
+                <div>Contact</div>
+            </a></li>
+        </ul>
+        <img class="footer-image" src="https://via.placeholder.com/127x157" alt="Footer Image">
+    </div>
+    <div class="container-section">
+        <div class="header"> 
+            <h1>Welcome to Contact!</h1>
+        </div>
+        <div class="large-card">
+            <div class="button-container">
+                <input type="text" placeholder="Search" />
+                <button class="primary-button">Filter</button>
+            </div>
+            <table class="contact-table">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Category</th>
+                        <th>Telephone Number</th>
+                        <th>City</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody id="contact-table-body">
+                    <!-- Table rows will be inserted here -->
+                </tbody>
+            </table>
+            <button class="primary-button add-button"  >Add</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('http://localhost:8080/api/contact/all')
+                .then(response => response.json())
+                .then(data => renderContacts(data))
+                .catch(error => console.error('Error fetching contacts:', error));
+        });
+
+        function renderContacts(contacts) {
+            const tbody = document.getElementById('contact-table-body');
+            tbody.innerHTML = '';
+
+            contacts.forEach(contact => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${contact.firstname} ${contact.lastname}</td>
+                    <td>${contact.category}</td>
+                    <td>${contact.phonenumber}</td>
+                    <td>${contact.city}</td>
+                    <td>${contact.description}</td>
+                `;
+                row.addEventListener('click', () => {
+                    window.location.href = `admin-contact-view.html?id=${contact.id}`;
+                });
+                tbody.appendChild(row);
+            });
+        }
+
+        document.getElementById('add-button').addEventListener('click', function() {
+            window.location.href = 'admin-contact-add.html';
+        });
+    </script>
+</body>
+</html>

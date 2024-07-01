@@ -1,0 +1,218 @@
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/src/styles/contact.css">
+  <title>Responsive Layout</title>
+  <style>
+    
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-container">
+    <div class="logo-container">
+      <img src="/images/logo.png" alt="Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a class="active" href="index.html">Home</a></li>
+      <li><a href="/nested/service.html">Service</a></li>
+      <li><a href="/nested/showroom.html">Showroom</a></li>
+      <li><a href="/nested/service.html">About Us</a></li>
+      <li><a href="/nested/contact.html">Contact</a></li>
+      <li><a href="/nested/about.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+</nav>
+<div id="app">
+  <div class="section-container">
+    <div class="contact-collect-section">
+      <div class="transform-text">
+        <h1 class="blue-text">Contact us</h1>
+        <h1>Looking to have home renovation’s done to your house? Give us a call for any of your home remodeling needs. We are a 1 Stop Shop when it comes to any home remodeling projects.</h1>
+        <button class="primary-button contactbtn">Number</button>
+      </div>
+      <div class="images-container-contact">
+        <div class="image-card"><img src="/images/bedroom.png" alt="bedroom"></div>
+        <div class="image-card second"><img src="/images/bedroom.png" alt="bedroom"></div>
+        <div class="image-card"><img src="/images/bedroom.png" alt="bedroom"></div>
+      </div>
+    </div>
+
+    <div class="contact-container">
+      <div class="contact-form" id="contact-form">
+        <div class="row">
+          <div class="input-group input-half">
+            <label for="first-name">First Name</label>
+            <div class="error-message" id="error-first-name"></div>
+            <input type="text" id="first-name" name="first-name">
+          </div>
+          <div class="input-group input-half">
+            <label for="last-name">Last Name</label>
+            <div class="error-message" id="error-last-name"></div>
+            <input type="text" id="last-name" name="last-name">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-group input-half">
+            <label for="category">Category</label>
+            <div class="error-message" id="error-category"></div>
+            <select id="category" name="category">
+              <option value="">Select Category</option>
+              <option value="Friend">Friend</option>
+              <option value="Family">Family</option>
+              <option value="Work">Work</option>
+            </select>
+          </div>
+          <div class="input-group input-half">
+            <label for="phonenumber">Phone Number</label>
+            <div class="error-message" id="error-phonenumber"></div>
+            <input type="text" id="phonenumber" name="phonenumber">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-group input-half city-input">
+            <label for="city">City</label>
+            <select id="city" name="city">
+              <option value="">Select City</option>
+              <option value="New York">New York</option>
+              <option value="Los Angeles">Los Angeles</option>
+              <option value="Chicago">Chicago</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="description">Description</label>
+          <div class="error-message" id="error-description"></div>
+          <textarea id="description" name="description"></textarea>
+        </div>
+        <div class="input-group">
+          <input type="file" id="image-files" name="image-files" multiple accept="image/*" style="display: none;">
+        </div>
+        <div class="img-gallery" id="img-gallery"></div>
+        <div class="button-group">
+          <label class="upload-button primary-button"  for="image-files">Select Images</label>
+          <button class="primary-button contact-btn" id="submit-contact">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('image-files').addEventListener('change', function(event) {
+  const files = event.target.files;
+  const gallery = document.getElementById('img-gallery');
+  gallery.innerHTML = ''; // Clear the gallery
+
+  for (const file of files) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      gallery.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+document.getElementById('submit-contact').addEventListener('click', async function(event) {
+  event.preventDefault();
+  // Clear previous error messages
+  document.getElementById('error-first-name').innerText = '';
+  document.getElementById('error-last-name').innerText = '';
+  document.getElementById('error-category').innerText = '';
+  document.getElementById('error-phonenumber').innerText = '';
+  document.getElementById('error-description').innerText = '';
+
+  // Gather form data
+  const firstname = document.getElementById('first-name').value.trim();
+  const lastname = document.getElementById('last-name').value.trim();
+  const category = document.getElementById('category').value.trim();
+  const phonenumber = document.getElementById('phonenumber').value.trim();
+  const city = document.getElementById('city').value.trim();
+  const description = document.getElementById('description').value.trim();
+  const imageFiles = document.getElementById('image-files').files;
+  const imageUrls = await Promise.all(Array.from(imageFiles).map(file => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        resolve(e.target.result);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }));
+
+  // Validate form data
+  let isValid = true;
+  if (!firstname) {
+    document.getElementById('error-first-name').innerText = "First name can't be empty";
+    isValid = false;
+  }
+  if (!lastname) {
+    document.getElementById('error-last-name').innerText = "Last name can't be empty";
+    isValid = false;
+  }
+  if (!category) {
+    document.getElementById('error-category').innerText = "Category can't be empty";
+    isValid = false;
+  }
+  if (!phonenumber) {
+    document.getElementById('error-phonenumber').innerText = "Phone number can't be empty";
+    isValid = false;
+  }
+  if (!description) {
+    document.getElementById('error-description').innerText = "Description can't be empty";
+    isValid = false;
+  }
+
+  if (!isValid) {
+    return;
+  }
+
+  const formData = {
+    firstname,
+    lastname,
+    category,
+    phonenumber,
+    city,
+    description,
+    imageUrls
+  };
+
+  console.log('Data to send:', formData);
+
+  try {
+    const response = await fetch('http://localhost:8080/api/contact/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log('Response received:', data);
+      alert('Form submitted successfully!');
+    } else {
+      const errorData = await response.json();
+      console.log('Failed to submit the form:', errorData);
+      alert(`Error: ${errorData.message || 'There was an issue submitting the form.'}`);
+    }
+  } catch (error) {
+    console.log('Error:', error);
+    alert('There was an error submitting the form.');
+  }
+});
+</script>
+</body>
+</html>
